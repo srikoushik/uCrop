@@ -2,8 +2,8 @@
 <resources>
 
     <!--uCrop Activity-->
-    <color name="ucrop_color_toolbar">#FF6E40</color>
-    <color name="ucrop_color_statusbar">#CC5833</color>
+    <color name="ucrop_color_toolbar">#000000</color>
+    <color name="ucrop_color_statusbar">#000000</color>
     <color name="ucrop_color_toolbar_widget">#fff</color>
     <color name="ucrop_color_widget">#000</color>
     <color name="ucrop_color_widget_active">#FF6E40</color>

@@ -511,19 +511,6 @@ public class SampleActivity extends BaseActivity implements UCropFragmentCallbac
 
         // Change crop & loader menu icons color to match the rest of the UI colors
 
-        MenuItem menuItemLoader = menu.findItem(R.id.menu_loader);
-        Drawable menuItemLoaderIcon = menuItemLoader.getIcon();
-        if (menuItemLoaderIcon != null) {
-            try {
-                menuItemLoaderIcon.mutate();
-                menuItemLoaderIcon.setColorFilter(mToolbarWidgetColor, PorterDuff.Mode.SRC_ATOP);
-                menuItemLoader.setIcon(menuItemLoaderIcon);
-            } catch (IllegalStateException e) {
-                Log.i(this.getClass().getName(), String.format("%s - %s", e.getMessage(), getString(R.string.ucrop_mutate_exception_hint)));
-            }
-            ((Animatable) menuItemLoader.getIcon()).start();
-        }
-
         MenuItem menuItemCrop = menu.findItem(R.id.menu_crop);
         Drawable menuItemCropIcon = ContextCompat.getDrawable(this, mToolbarCropDrawable);
         if (menuItemCropIcon != null) {
@@ -538,7 +525,6 @@ public class SampleActivity extends BaseActivity implements UCropFragmentCallbac
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         menu.findItem(R.id.menu_crop).setVisible(!mShowLoader);
-        menu.findItem(R.id.menu_loader).setVisible(mShowLoader);
         return super.onPrepareOptionsMenu(menu);
     }
 

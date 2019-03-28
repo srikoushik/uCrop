@@ -127,19 +127,6 @@ public class UCropActivity extends AppCompatActivity {
 
         // Change crop & loader menu icons color to match the rest of the UI colors
 
-        MenuItem menuItemLoader = menu.findItem(R.id.menu_loader);
-        Drawable menuItemLoaderIcon = menuItemLoader.getIcon();
-        if (menuItemLoaderIcon != null) {
-            try {
-                menuItemLoaderIcon.mutate();
-                menuItemLoaderIcon.setColorFilter(mToolbarWidgetColor, PorterDuff.Mode.SRC_ATOP);
-                menuItemLoader.setIcon(menuItemLoaderIcon);
-            } catch (IllegalStateException e) {
-                Log.i(TAG, String.format("%s - %s", e.getMessage(), getString(R.string.ucrop_mutate_exception_hint)));
-            }
-            ((Animatable) menuItemLoader.getIcon()).start();
-        }
-
         MenuItem menuItemCrop = menu.findItem(R.id.menu_crop);
         Drawable menuItemCropIcon = ContextCompat.getDrawable(this, mToolbarCropDrawable);
         if (menuItemCropIcon != null) {
@@ -154,7 +141,6 @@ public class UCropActivity extends AppCompatActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         menu.findItem(R.id.menu_crop).setVisible(!mShowLoader);
-        menu.findItem(R.id.menu_loader).setVisible(mShowLoader);
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -276,10 +262,10 @@ public class UCropActivity extends AppCompatActivity {
         mToolbarColor = intent.getIntExtra(UCrop.Options.EXTRA_TOOL_BAR_COLOR, ContextCompat.getColor(this, R.color.ucrop_color_toolbar));
         mActiveWidgetColor = intent.getIntExtra(UCrop.Options.EXTRA_UCROP_COLOR_WIDGET_ACTIVE, ContextCompat.getColor(this, R.color.ucrop_color_widget_active));
         mToolbarWidgetColor = intent.getIntExtra(UCrop.Options.EXTRA_UCROP_WIDGET_COLOR_TOOLBAR, ContextCompat.getColor(this, R.color.ucrop_color_toolbar_widget));
-        mToolbarCancelDrawable = intent.getIntExtra(UCrop.Options.EXTRA_UCROP_WIDGET_CANCEL_DRAWABLE, R.drawable.ucrop_ic_cross);
+        mToolbarCancelDrawable = intent.getIntExtra(UCrop.Options.EXTRA_UCROP_WIDGET_CANCEL_DRAWABLE, R.drawable.back_white_ab);
         mToolbarCropDrawable = intent.getIntExtra(UCrop.Options.EXTRA_UCROP_WIDGET_CROP_DRAWABLE, R.drawable.ucrop_ic_done);
         mToolbarTitle = intent.getStringExtra(UCrop.Options.EXTRA_UCROP_TITLE_TEXT_TOOLBAR);
-        mToolbarTitle = mToolbarTitle != null ? mToolbarTitle : getResources().getString(R.string.ucrop_label_edit_photo);
+        mToolbarTitle = "";
         mLogoColor = intent.getIntExtra(UCrop.Options.EXTRA_UCROP_LOGO_COLOR, ContextCompat.getColor(this, R.color.ucrop_color_default_logo));
         mShowBottomControls = !intent.getBooleanExtra(UCrop.Options.EXTRA_HIDE_BOTTOM_CONTROLS, false);
         mRootViewBackgroundColor = intent.getIntExtra(UCrop.Options.EXTRA_UCROP_ROOT_VIEW_BACKGROUND_COLOR, ContextCompat.getColor(this, R.color.ucrop_color_crop_background));
