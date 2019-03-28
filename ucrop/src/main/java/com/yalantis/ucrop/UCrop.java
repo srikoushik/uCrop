@@ -491,7 +491,7 @@ public class UCrop {
          * @param hide - set to true to hide the bottom controls (shown by default)
          */
         public void setHideBottomControls(boolean hide) {
-            mOptionBundle.putBoolean(EXTRA_HIDE_BOTTOM_CONTROLS, true);
+            mOptionBundle.putBoolean(EXTRA_HIDE_BOTTOM_CONTROLS, hide);
         }
 
         /**
